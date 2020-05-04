@@ -29,7 +29,8 @@ class CountryWiseViewController: UIViewController {
              "France":"fr",
              "UK":"gb",
              "China":"cn",
-             "Pakistan":"pk"]
+             "Pakistan":"pk",
+             "Mexico":"mx"]
         
         let countryCode = (ISO3166CountryCodes[selectedCountryName] ?? "ca") ??
             "ca"

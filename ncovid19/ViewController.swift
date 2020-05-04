@@ -14,7 +14,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBAction func doneButton(_ sender: UIButton) {
         performSegue(withIdentifier: "selectedCountry", sender: self)
-        //print("Selected country is \(selectedCountry)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -25,7 +24,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBOutlet weak var pickerView: UIPickerView!
     
-    let countries = ["India", "Canada", "USA","Italy", "France", "China", "UK", "Pakistan"]
+    let countries = ["India", "Canada", "USA","Italy", "France", "China", "UK", "Pakistan", "Mexico"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
