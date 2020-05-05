@@ -10,6 +10,7 @@ import UIKit
 
 class CountryWiseViewController: UIViewController {
     
+    @IBOutlet weak var moreDetails: UILabel!
     @IBOutlet weak var lastUpdatedDate: UITextField!
     @IBOutlet weak var numberOfDeaths: UITextField!
     @IBOutlet weak var criticalCases: UITextField!
@@ -17,9 +18,11 @@ class CountryWiseViewController: UIViewController {
     @IBOutlet weak var confirmedCases: UITextField!
     @IBOutlet weak var populationCountry: UITextField!
     var selectedCountryName:String!
+    var mCovData:CovidModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupLabelTap()
         self.title = selectedCountryName
         let ISO3166CountryCodes:[String?:String?] =
             ["India":"in",
@@ -33,31 +36,37 @@ class CountryWiseViewController: UIViewController {
              "Mexico":"mx"]
         
         let countryCode = (ISO3166CountryCodes[selectedCountryName] ?? "ca") ??
-            "ca"
+        "ca"
         RestServices.shared.fetchCovidData(country: countryCode) { (result) in
             switch result {
                 
             case .success(let covData):
+                self.mCovData = covData
                 DispatchQueue.main.async {
+                    self.populationCountry.isUserInteractionEnabled = false
                     self.populationCountry.text = "\(covData.data.population.roundedWithAbbrevations)"
                     
+                    self.confirmedCases.isUserInteractionEnabled = false
                     self.confirmedCases.backgroundColor = .yellow
                     self.confirmedCases.text = "\(covData.data.latestData.confirmed.roundedWithAbbrevations)"
                     self.confirmedCases.textColor = .black
                     
+                    self.recoveredCases.isUserInteractionEnabled = false
                     self.recoveredCases.backgroundColor = .green
                     self.recoveredCases.text = "\(covData.data.latestData.recovered.roundedWithAbbrevations)"
-                     self.recoveredCases.textColor = .black
+                    self.recoveredCases.textColor = .black
                     
+                    self.criticalCases.isUserInteractionEnabled = false
                     self.criticalCases.backgroundColor = .orange
-                     self.criticalCases.textColor = .white
+                    self.criticalCases.textColor = .white
                     self.criticalCases.text = "\(covData.data.latestData.critical.roundedWithAbbrevations)"
                     
+                    self.numberOfDeaths.isUserInteractionEnabled = false
                     self.numberOfDeaths.backgroundColor = .red
                     self.numberOfDeaths.textColor = .white
                     self.numberOfDeaths.text = "\(covData.data.latestData.deaths.roundedWithAbbrevations)"
                     
-                    //print("\(covData.data.updatedAt.HumanReadbleDate.description)")
+                    self.lastUpdatedDate.isUserInteractionEnabled = false
                     self.lastUpdatedDate.text = convertDateFormater(date: covData.data.updatedAt)
                 }
                 
@@ -66,22 +75,25 @@ class CountryWiseViewController: UIViewController {
             }
         }
         
-
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func labelTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "countryCovidDetails", sender: self)
     }
-    */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let countrySpecific = segue.destination as! CountryDetailsViewController
+        countrySpecific.covData = mCovData
+    }
+    
+    func setupLabelTap() {
+        let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
+        self.moreDetails.isUserInteractionEnabled = true
+        self.moreDetails.addGestureRecognizer(labelTap)
+    }
 }
+
 
 extension Int {
     var roundedWithAbbrevations: String {
@@ -90,7 +102,7 @@ extension Int {
         let million = number / 1000000
         let billion = number / 1000000000
         if billion >= 1.0 {
-             return "\(round(billion*10)/10) B"
+            return "\(round(billion*10)/10) B"
         } else if million >= 1.0 {
             return "\(round(million*10)/10) M"
         } else if thousand >= 1.0 {
@@ -106,10 +118,10 @@ extension String {
         var date:Date?
         func DateConverter(dateString:String) -> Date {
             let isoDate = dateString
-
+            
             let dateFormatter = ISO8601DateFormatter()
-                date = dateFormatter.date(from:isoDate)!
-                return date ?? Date()
+            date = dateFormatter.date(from:isoDate)!
+            return date ?? Date()
         }
         return date ?? Date()
     }
@@ -119,15 +131,15 @@ func convertDateFormater(date: String) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
     dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-
+    
     guard let date = dateFormatter.date(from: date) else {
         assert(false, "no date from string")
         return ""
     }
-
+    
     dateFormatter.dateFormat = "yyyy MMM EEEE HH:mm"
     dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
     let timeStamp = dateFormatter.string(from: date)
-
+    
     return timeStamp
 }

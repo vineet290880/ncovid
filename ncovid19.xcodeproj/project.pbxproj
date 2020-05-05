@@ -16,6 +16,7 @@
 		0ECD716E2443F159001777C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ECD716C2443F159001777C1 /* Main.storyboard */; };
 		0ECD71702443F15B001777C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ECD716F2443F15B001777C1 /* Assets.xcassets */; };
 		0ECD71732443F15B001777C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ECD71712443F15B001777C1 /* LaunchScreen.storyboard */; };
+		0ED8A75A2460A29700C92871 /* CountryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED8A7592460A29700C92871 /* CountryDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0ECD716F2443F15B001777C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ECD71722443F15B001777C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ECD71742443F15B001777C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0ED8A7592460A29700C92871 /* CountryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				0ECD716A2443F159001777C1 /* ViewController.swift */,
 				0ECD716C2443F159001777C1 /* Main.storyboard */,
 				0E142A812446977D002DB85C /* CountryWiseViewController.swift */,
+				0ED8A7592460A29700C92871 /* CountryDetailsViewController.swift */,
 				0ECD716F2443F15B001777C1 /* Assets.xcassets */,
 				0ECD71712443F15B001777C1 /* LaunchScreen.storyboard */,
 				0ECD71742443F15B001777C1 /* Info.plist */,
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ECD716B2443F159001777C1 /* ViewController.swift in Sources */,
+				0ED8A75A2460A29700C92871 /* CountryDetailsViewController.swift in Sources */,
 				0E9F977224494B1D000955E7 /* CovidModel.swift in Sources */,
 				0E2172ED2447E3AD000A91B2 /* RestServices.swift in Sources */,
 				0E142A822446977D002DB85C /* CountryWiseViewController.swift in Sources */,
