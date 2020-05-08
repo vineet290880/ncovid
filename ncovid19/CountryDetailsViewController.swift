@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import Charts
 
 class CountryDetailsViewController: UIViewController {
-    
+
     var covData:CovidModel? = nil
     var covDetails:CovidModel?
     let TODAY = 0
     let YESTERDAY = 1
     
-    
+    @IBOutlet weak var chtChart: LineChartView!
     @IBOutlet weak var yDeaths: UITextField!
     @IBOutlet weak var yRecovered: UITextField!
     @IBOutlet weak var yConfirmed: UITextField!
@@ -34,7 +35,9 @@ class CountryDetailsViewController: UIViewController {
         
         self.confirmed.isUserInteractionEnabled = false
         self.confirmed.text = "\(covDetails?.data.timeline[TODAY].newConfirmed ?? 0)"
-        self.confirmed.backgroundColor = UIColor.orange
+        self.confirmed.backgroundColor = UIColor.yellow
+        self.confirmed.textColor = UIColor.black
+        
         
         self.recovered.isUserInteractionEnabled = false
         self.recovered.text = "\(covDetails?.data.timeline[TODAY].newRecovered ?? 0)"
@@ -47,7 +50,8 @@ class CountryDetailsViewController: UIViewController {
         self.yDeaths.textColor = UIColor.white
         self.yConfirmed.isUserInteractionEnabled = false
         self.yConfirmed.text = "\(covDetails?.data.timeline[YESTERDAY].newConfirmed ?? 0)"
-        self.yConfirmed.backgroundColor = UIColor.orange
+        self.yConfirmed.backgroundColor = UIColor.yellow
+        self.yConfirmed.textColor = UIColor.black
         self.yRecovered.isUserInteractionEnabled = false
         self.yRecovered.text = "\(covDetails?.data.timeline[YESTERDAY].newRecovered ?? 0)"
         self.yRecovered.backgroundColor = UIColor.green
@@ -55,5 +59,22 @@ class CountryDetailsViewController: UIViewController {
         
         
         // Do any additional setup after loading the view.
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        var lineChartEntry = [ChartDataEntry]()
+        if (covDetails?.data.timeline.count != 0) {
+            for i in 0..<(covDetails?.data.timeline.count)! {
+                let date = dateFormatter.date(from: covDetails?.data.timeline[i].date ?? "null")
+                let value = ChartDataEntry(x: Double(i), y: Double((covDetails?.data.timeline[i].newConfirmed)!))
+                lineChartEntry.append(value)
+            }
+            let line1 = LineChartDataSet(entries: lineChartEntry, label: "Confirmed")
+            line1.colors = [NSUIColor.blue]
+            let data = LineChartData()
+            data.addDataSet(line1)
+            chtChart.data = data
+        }
+    
     }
 }

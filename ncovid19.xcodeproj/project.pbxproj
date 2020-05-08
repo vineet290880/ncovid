@@ -17,6 +17,7 @@
 		0ECD71702443F15B001777C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ECD716F2443F15B001777C1 /* Assets.xcassets */; };
 		0ECD71732443F15B001777C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ECD71712443F15B001777C1 /* LaunchScreen.storyboard */; };
 		0ED8A75A2460A29700C92871 /* CountryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED8A7592460A29700C92871 /* CountryDetailsViewController.swift */; };
+		76189F15147FE870B3286115 /* Pods_ncovid19.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A06BF944316693BC16C71F /* Pods_ncovid19.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		0ECD71722443F15B001777C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ECD71742443F15B001777C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ED8A7592460A29700C92871 /* CountryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewController.swift; sourceTree = "<group>"; };
+		79A06BF944316693BC16C71F /* Pods_ncovid19.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ncovid19.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A7F574E11E6C7753DFFD13 /* Pods-ncovid19.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ncovid19.release.xcconfig"; path = "Target Support Files/Pods-ncovid19/Pods-ncovid19.release.xcconfig"; sourceTree = "<group>"; };
+		D6E03C4E76F4D8C3D0F14E65 /* Pods-ncovid19.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ncovid19.debug.xcconfig"; path = "Target Support Files/Pods-ncovid19/Pods-ncovid19.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76189F15147FE870B3286115 /* Pods_ncovid19.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +63,8 @@
 			children = (
 				0ECD71652443F159001777C1 /* ncovid19 */,
 				0ECD71642443F159001777C1 /* Products */,
+				3EE73BF849C4630871A4B965 /* Pods */,
+				8C78BD962710980F7B80CB15 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +94,24 @@
 			path = ncovid19;
 			sourceTree = "<group>";
 		};
+		3EE73BF849C4630871A4B965 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6E03C4E76F4D8C3D0F14E65 /* Pods-ncovid19.debug.xcconfig */,
+				B5A7F574E11E6C7753DFFD13 /* Pods-ncovid19.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8C78BD962710980F7B80CB15 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79A06BF944316693BC16C71F /* Pods_ncovid19.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -94,9 +119,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0ECD71772443F15B001777C1 /* Build configuration list for PBXNativeTarget "ncovid19" */;
 			buildPhases = (
+				6D42EEC61BF8CBA45B6864A9 /* [CP] Check Pods Manifest.lock */,
 				0ECD715F2443F159001777C1 /* Sources */,
 				0ECD71602443F159001777C1 /* Frameworks */,
 				0ECD71612443F159001777C1 /* Resources */,
+				F8230080D73181D11CBC02E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +179,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6D42EEC61BF8CBA45B6864A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ncovid19-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8230080D73181D11CBC02E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ncovid19/Pods-ncovid19-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ncovid19/Pods-ncovid19-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ncovid19/Pods-ncovid19-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0ECD715F2443F159001777C1 /* Sources */ = {
@@ -306,6 +375,7 @@
 		};
 		0ECD71782443F15B001777C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6E03C4E76F4D8C3D0F14E65 /* Pods-ncovid19.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -326,6 +396,7 @@
 		};
 		0ECD71792443F15B001777C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5A7F574E11E6C7753DFFD13 /* Pods-ncovid19.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
